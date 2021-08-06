@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { NavLinkButton } from "./parts/TinyParts";
 
 class Home extends Component {
@@ -12,7 +11,6 @@ class Home extends Component {
       <div >
         <h1>Welcome</h1>
         <p/>
-        <Link to="/items">  items</Link>
         <NavLinkButton to="/items" label="Каталог" />
       </div >
     )

@@ -8,7 +8,7 @@ class AjaxService extends React.Component {
     return axios({
       method: method,
       url: url,
-      data: data,
+      data: JSON.stringify({"json": data}),
       headers: headers
     });
   };
@@ -35,6 +35,7 @@ class AjaxService extends React.Component {
     if (!headers) {
       headers = {};
     }
+    headers["Content-Type"] = "application/json;charset=utf-8"
 
     return headers;
   };

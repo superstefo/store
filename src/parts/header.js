@@ -18,6 +18,7 @@ class Header extends React.Component {
           <NavLinkButton to="/home" label="Начало" />
           <NavLinkButton to="/items" label="Каталог" />
           <NavLinkButton to="/basket" label="Кошница" />
+          <NavLinkButton to="/faq" label="Информация" />
           </div>
         </div>
       </nav>
