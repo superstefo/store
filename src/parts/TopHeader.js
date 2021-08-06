@@ -1,9 +1,9 @@
 import React from "react";
 
-import { NavLinkButton } from "../parts/TinyParts";
+import { NavLinkButton } from "./TinyParts";
 import { withRouter } from 'react-router-dom';
 
-class Header extends React.Component {
+class TopHeader extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,4 +26,4 @@ class Header extends React.Component {
   }
 }
 
-export default withRouter(Header);
+export default withRouter(TopHeader);

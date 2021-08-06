@@ -2,7 +2,7 @@ import React from 'react';
 import Home from './Home';
 import ItemsList from './customer/ItemsList';
 import Basket from './customer/Basket';
-import Header from './parts/Header';
+import TopHeader from './parts/TopHeader';
 import Faq from './customer/Faq';
 import Authenticate from './admin/Authenticate';
 import HistoryHolder from './services/RouteHistoryProvider';
@@ -15,7 +15,7 @@ const App = () => {
     <div className="container" style={{ paddingTop: 10 }}>
 
       <Router>
-        <Header />
+        <TopHeader />
         <RouteHistoryProvider historyHolder={HistoryHolder} />
         <Switch>
           < Route exact path="/" component={Home} />
