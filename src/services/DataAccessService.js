@@ -9,12 +9,23 @@ class DataKeeperService extends React.Component {
     this.state = {
     };
     this.currentOrder = {};
+    this.isSitePristine = true;
   };
 
   getCurrentOrder = () => {
     return this.currentOrder;
   }
 
+  clearCurrentOrder = () => {
+    this.currentOrder = {};
+  }
+
+  isPristine = () => {
+    return this.isSitePristine;
+  }
+  setPristine = (isPristine) => {
+    this.isSitePristine = isPristine;
+  }
   getPriceList = () => {
     return [
       {
@@ -44,6 +55,27 @@ class DataKeeperService extends React.Component {
         unit: "бр",
         price: 4.00,
         info: "авокадо"
+      },
+      {
+        title: "kруша",
+        id: "круша01",
+        unit: "бр",
+        price: 2.3,
+        info: "сладка kруша"
+      },
+      {
+        title: "желатин",
+        id: "желатин01",
+        unit: "бр",
+        price: 0.09,
+        info: "желатин 1"
+      },
+      {
+        title: "захар",
+        id: "захар01",
+        unit: "бр",
+        price: 0.1,
+        info: "захар 1"
       }
     ];
   }

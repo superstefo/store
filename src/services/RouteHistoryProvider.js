@@ -40,7 +40,7 @@ class History extends React.Component {
 
     this.history.push({
       pathname: url,
-      state: { data: data }
+      state: data
     })
   }
 

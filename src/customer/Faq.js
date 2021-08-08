@@ -1,26 +1,16 @@
 import React from 'react';
 import "react-table/react-table.css"
 import ReactTable from "react-table";
-import { TextWrapper, OrderWrapper } from '../parts/TinyParts'
-import DataAccessService from '../services/DataAccessService';
+import { TextWrapper } from '../parts/TinyParts'
 import History from '../services/RouteHistoryProvider';
- 
 
 class Faq extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      currentOrder: DataAccessService.getCurrentOrder()
-    };
-  }
-
-  goBasket = () => {
-    History.goTo("/auth")
   }
 
   submit = () => {
-    this.goBasket()
+    History.goTo("/auth");
   }
 
   getData = () => {
@@ -80,11 +70,10 @@ class Faq extends React.Component {
             defaultPageSize={data.length}
             pageSize={data.length}
             showPagination={false}
-
           />
           <br />
         </div>
-        <button className="btn btn-primary" onClick={this.submit} >A</button>
+        <button className="btn btn-primary" onClick={this.submit} >Admin</button>
       </div>
     )
   }

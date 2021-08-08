@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom'
 import { TextWrapper, OrderWrapper } from '../parts/TinyParts'
 import DataAccessService from '../services/DataAccessService';
 import History from '../services/RouteHistoryProvider';
- 
 
 class ItemsList extends React.Component {
   constructor(props) {
@@ -16,12 +15,8 @@ class ItemsList extends React.Component {
     };
   }
 
-  goBasket = () => {
-    History.goTo("/basket")
-  }
-
   submit = () => {
-    this.goBasket()
+    History.goTo("/basket")
   }
 
   onChangeFunc = (e, orderedItem, currentOrder) => {
@@ -77,7 +72,7 @@ class ItemsList extends React.Component {
             Header: "К-во",
             accessor: "order",
             width: 220,
-          }   ,   {
+          }, {
             Header: "Мярка",
             accessor: "unit",
             width: 100
@@ -100,7 +95,9 @@ class ItemsList extends React.Component {
           />
           <br />
         </div>
-        <button className="btn btn-primary" onClick={this.submit} >Напред</button>
+        <div className="text-center">
+          <button className="btn btn-primary" onClick={this.submit} >Напред</button>
+        </div>
       </div>
     )
   }

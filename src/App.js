@@ -4,8 +4,10 @@ import ItemsList from './customer/ItemsList';
 import Basket from './customer/Basket';
 import TopHeader from './parts/TopHeader';
 import Faq from './customer/Faq';
+import OrderDetails from './customer/OrderDetails';
 import Authenticate from './admin/Authenticate';
 import HistoryHolder from './services/RouteHistoryProvider';
+import OrderResult from './customer/OrderResult';
 import {RouteHistoryProvider} from './services/RouteHistoryProvider';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -22,6 +24,8 @@ const App = () => {
           < Route exact path="/basket" component={Basket} />
           < Route path="/items" component={ItemsList} />
           < Route path="/faq" component={Faq} />
+          < Route path="/order-details" component={OrderDetails} />
+          < Route path="/order-result" component={OrderResult} />
           < Route path="/auth" component={Authenticate} />
           < Route path="*" component={Home} />
         </Switch>

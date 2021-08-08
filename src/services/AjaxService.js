@@ -5,10 +5,11 @@ import Const from './Constants';
 class AjaxService extends React.Component {
 
   execute = (method, url, data, headers) => {
+
     return axios({
       method: method,
       url: url,
-      data: JSON.stringify({"json": data}),
+      data: {"json": JSON.stringify( data).replace("{", "")},
       headers: headers
     });
   };
