@@ -1,4 +1,5 @@
-let ipAdress = 'http://localhost:5000/';
+//let ipAdress = 'http://localhost:5000/';
+let ipAdress = 'https://nut-store.herokuapp.com/';
 
 const Const = {
   URLS: {
