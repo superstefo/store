@@ -29,14 +29,14 @@ class Basket extends React.Component {
 
     //object to array:
     Object.keys(allItems)
-      .map((key) => {
+      .forEach((key) => {
         arr.push(allItems[key])
       });
 
     let totalPrice = 0;
 
     arr = arr
-      .filter(one => { return one.quantity != 0 })
+      .filter(one => { return one.quantity !== 0 })
       .map(one => {
         let quantity = one.quantity;
         one = one.orderedItem;

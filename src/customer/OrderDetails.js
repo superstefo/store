@@ -9,24 +9,20 @@ import History from '../services/RouteHistoryProvider';
 class OrderDetails extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-
-    };
+    this.state = {};
   }
 
   handleSubmit = () => {
-
     let allItems = DataAccessService.getCurrentOrder();
     let arr = [];
 
     Object.keys(allItems)
-      .map((key) => {
+      .forEach((key) => {
         arr.push(allItems[key])
       });
 
     arr = arr
-      .filter(one => { return one.quantity != 0 })
+      .filter(one => { return one.quantity !== 0 })
       .map(one => {
         return {
           quantity: one.quantity,

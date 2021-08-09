@@ -3,9 +3,6 @@ import { NavLinkButton } from "./parts/TinyParts";
 import DataAccessService from './services/DataAccessService';
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   onClick = () => {
     DataAccessService.setPristine(false);

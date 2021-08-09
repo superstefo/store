@@ -5,9 +5,6 @@ import { TextWrapper } from '../parts/TinyParts'
 import History from '../services/RouteHistoryProvider';
 
 class Faq extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   submit = () => {
     History.goTo("/auth");
