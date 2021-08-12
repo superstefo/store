@@ -3,6 +3,7 @@ import "react-table/react-table.css"
 import ReactTable from "react-table";
 import { TextWrapper } from '../parts/TinyParts'
 import History from '../services/RouteHistoryProvider';
+import Const from '../services/Constants';
 
 class Faq extends React.Component {
 
@@ -71,6 +72,9 @@ class Faq extends React.Component {
           <br />
         </div>
         <button className="btn btn-primary" onClick={this.submit} >Admin</button>
+        <br />
+        <p />
+        <label>ver: {Const.VERSION}</label>
       </div>
     )
   }

@@ -2,34 +2,23 @@ import React from 'react';
 import "react-table/react-table.css"
 import Const from '../services/Constants';
 import AjaxService from '../services/AjaxService';
+import { SetStateInput } from '../parts/TinyParts';
 
 class Authenticate extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-
-    };
+    this.state = {};
   }
 
   handleSubmit = () => {
-
-
-const encodedString = Buffer.from(this.state.name + ":" + this.state.pass).toString('base64');
-
-    let promise = AjaxService.doPost(Const.URLS.AUTH, encodedString, {});
-
+    const encodedString = Buffer.from(this.state.name + ":" + this.state.pass).toString('base64');
+    console.log(encodedString);
+    let promise = AjaxService.doPost(Const.URLS.AUTH, encodedString, false);
     promise.then((data) => {
-      console.log(data);
-
+      AjaxService.setSecret(data?.data)
     }).catch((e) => {
-
-       console.error(e);
+      AjaxService.setSecret(null)
     })
-  }
-
-  onChangeFunc = (e, key) => {
-    this.setState( {[key]: e.target.value} )
   }
 
   render() {
@@ -37,10 +26,10 @@ const encodedString = Buffer.from(this.state.name + ":" + this.state.pass).toStr
       <div className="text-left text-wrap">
         <br />
         <div className="text-left text-wrap">
-           <input className="form-control" onChange={(ev) => this.onChangeFunc(ev, "name" )} type="text" placeholder="Имe..."></input>
-          <input className="form-control" onChange={(ev) => this.onChangeFunc(ev, "pass" )} type="password" placeholder="Парола..."></input>
+          <SetStateInput stateFieldName="name" statefulObject={this} label="Username" />
+          <SetStateInput stateFieldName="pass" statefulObject={this} label="Password" type="password" />
           <br />
-          <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>go!</button>
+          <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Готово</button>
         </div>
       </div>
     )

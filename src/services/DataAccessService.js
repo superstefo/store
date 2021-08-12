@@ -6,28 +6,9 @@ import AjaxService from './AjaxService';
 class DataKeeperService extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
     this.currentOrder = {};
     this.isSitePristine = true;
-  };
-
-  getCurrentOrder = () => {
-    return this.currentOrder;
-  }
-
-  clearCurrentOrder = () => {
-    this.currentOrder = {};
-  }
-
-  isPristine = () => {
-    return this.isSitePristine;
-  }
-  setPristine = (isPristine) => {
-    this.isSitePristine = isPristine;
-  }
-  getPriceList = () => {
-    return [
+    this.priceList = [
       {
         title: "тиквени семки",
         id: "boiko01",
@@ -78,6 +59,28 @@ class DataKeeperService extends React.Component {
         info: "захар 1"
       }
     ];
+  };
+
+  getCurrentOrder = () => {
+    return this.currentOrder;
+  }
+
+  clearCurrentOrder = () => {
+    this.currentOrder = {};
+  }
+
+  isPristine = () => {
+    return this.isSitePristine;
+  }
+  setPristine = (isPristine) => {
+    this.isSitePristine = isPristine;
+  }
+  getPriceList = () => {
+    return this.priceList;
+  }
+
+  setPriceList = (priceList) => {
+    this.priceList = priceList;
   }
 
 }

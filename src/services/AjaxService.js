@@ -4,41 +4,42 @@ import Const from './Constants';
 
 class AjaxService extends React.Component {
 
-  execute = (method, url, data, headers) => {
+  execute = (method, url, data, isToEscape) => {
+    let headers = {};
+    headers["Content-Type"] = "application/json;charset=utf-8";
+    headers[Const.AUTH_HEADER_NAME] = this[Const.AUTH_HEADER_NAME];
 
+    if (isToEscape) {
+      data = JSON.stringify(data).replace("{", "")
+    }
+
+    console.log(data);
     return axios({
       method: method,
       url: url,
-      data: {"json": JSON.stringify( data).replace("{", "")},
+      data: { "json": data },
       headers: headers
     });
   };
 
-  doPost = (url, data, headers) => {
-    return this.execute('post', url, data, this.getHeaders(headers));
+  doPost = (url, data, isToescape) => {
+    return this.execute('post', url, data, isToescape);
   };
 
-  doPut = (url, data, headers) => {
-    return this.execute('put', url, data, this.getHeaders(headers));
+  doPut = (url, data, isToescape) => {
+    return this.execute('put', url, data, isToescape);
   };
 
-  doGet = (url, headers) => {
-    return this.execute('get', url, {}, this.getHeaders(headers));
+  doGet = (url, isToescape) => {
+    return this.execute('get', url, {}, isToescape);
   };
 
-  doDelete = (url, headers) => {
-    return this.execute('delete', url, {}, this.getHeaders(headers));
+  doDelete = (url, isToescape) => {
+    return this.execute('delete', url, {}, isToescape);
   };
 
-  getHeaders = (headers) => {
-    let authHeaderName = Const.AUTH_HEADER_NAME;
-
-    if (!headers) {
-      headers = {};
-    }
-    headers["Content-Type"] = "application/json;charset=utf-8"
-
-    return headers;
+  setSecret = (secret) => {
+    this[Const.AUTH_HEADER_NAME] = secret
   };
 }
 

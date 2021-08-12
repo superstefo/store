@@ -4,6 +4,7 @@ import "react-table/react-table.css"
 import Const from '../services/Constants';
 import AjaxService from '../services/AjaxService';
 import DataAccessService from '../services/DataAccessService';
+import { SetStateInput } from '../parts/TinyParts';
 import History from '../services/RouteHistoryProvider';
 
 class OrderDetails extends React.Component {
@@ -40,19 +41,12 @@ class OrderDetails extends React.Component {
       order: arr
     }
 
-    let promise = AjaxService.doPost(Const.URLS.ORDER, data, {});
-
+    let promise = AjaxService.doPost(Const.URLS.ORDER, data, true);
     promise.then((data) => {
-      console.log(data);
-      History.goTo("/order-result", { "result": "Поръчката беше успешна. поръчка номер.." })
+      History.goTo("/order-result", { "result": "Поръчката беше успешна. поръчка номер.. " + data.data })
     }).catch((e) => {
-
       console.error(e);
     })
-  }
-
-  set = (e, key) => {
-    this.setState({ [key]: e.target.value })
   }
 
   render() {
@@ -60,11 +54,11 @@ class OrderDetails extends React.Component {
       <div className="text-left text-wrap">
         <br />
         <div className="text-left text-wrap">
-          <input className="form-control mb-3" onChange={e => this.set(e, "name")} placeholder="Имe..."></input>
-          <input className="form-control mb-3" onChange={e => this.set(e, "email")} placeholder="email..."></input>
-          <input className="form-control mb-3" onChange={e => this.set(e, "phone")} placeholder="телефон..."></input>
-          <input className="form-control mb-3" onChange={e => this.set(e, "address")} placeholder="Aдрес на доставка..."></input>
-          <input className="form-control mb-3" onChange={e => this.set(e, "more")} placeholder="допълнителна информация..."></input>
+          <SetStateInput stateFieldName="name" statefulObject={this} label="Имe" />
+          <SetStateInput stateFieldName="email" statefulObject={this} label="e-mail" type="email" />
+          <SetStateInput stateFieldName="phone" statefulObject={this} label="Телефон" type="tel" />
+          <SetStateInput stateFieldName="address" statefulObject={this} label="Aдрес за доставка" />
+          <SetStateInput stateFieldName="more" statefulObject={this} label="Още насоки" />
           <br />
           <div className="text-center">
             <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Поръчай!</button>
