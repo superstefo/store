@@ -24,14 +24,23 @@ class Authenticate extends React.Component {
 
   render() {
     return (
-      <div className="text-left text-wrap">
+      <div className="text-center text-wrap">
         <br />
-        <div className="text-left text-wrap">
+        <p />
+        <br />
+        <p />
+        <label>За администратор:</label>
+        <br />
+        <div className=" btn-group ">
           <SetStateInput stateFieldName="name" statefulObject={this} label="Username" />
-          <SetStateInput stateFieldName="pass" statefulObject={this} label="Password" type="password" />
-          <br />
-          <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Готово</button>
         </div>
+        <br />
+        <div className=" btn-group ">
+          <SetStateInput stateFieldName="pass" statefulObject={this} label="Password" type="password" />
+        </div>
+        <br />
+        <p />
+        <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Вход</button>
       </div>
     )
   }

@@ -1,5 +1,5 @@
 const zeros = "000000000000000000000";
-const separator = detectSeparator()
+const separator = detectSeparator();
 
 function detectSeparator() {
     return ".";

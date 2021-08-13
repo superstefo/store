@@ -16,7 +16,7 @@ class DataKeeperService extends React.Component {
         id: "boiko01",
         unit: "кг",
         price: 5.25,
-        info: "тиквени семки oт банкянска тиква"
+        info: "0,30 кг./опаковка"
       },
       {
         title: "фъстъци",

@@ -2,7 +2,7 @@ import React from 'react';
 import "react-table/react-table.css"
 import ReactTable from "react-table";
 import { withRouter } from 'react-router-dom'
-import { TextWrapper, OrderWrapper } from '../parts/TinyParts'
+import { TextWrapper, OrderWrapper, SetStateInput } from '../parts/TinyParts'
 import DataAccessService from '../services/DataAccessService';
 import History from '../services/RouteHistoryProvider';
 
@@ -34,7 +34,7 @@ class ItemsList extends React.Component {
       orderedItem: item,
       wholeOrder: this.state.currentOrder,
       onChangeFunc: this.onChangeFunc,
-      initialValue: this.state.currentOrder[item.id]?.quantity || ""
+      initialValue: this.state.currentOrder[item?.id]?.quantity || ""
     };
   };
 
@@ -43,7 +43,8 @@ class ItemsList extends React.Component {
       let obj = {
         title: <TextWrapper title={oneItem.title} />,
         unit: <TextWrapper title={oneItem.unit} />,
-        price: <TextWrapper title={oneItem.price + " лв/" + oneItem.unit} />,
+        info: <TextWrapper title={oneItem.info} />,
+        price: <TextWrapper title={oneItem.price + " лв."} />,
         order: <OrderWrapper {...this.orderWrapperProps(oneItem)} />
       };
       return { ...obj };
@@ -64,18 +65,23 @@ class ItemsList extends React.Component {
             accessor: "title"
           },
           {
-            Header: "Цена",
+            Header: "Инфо",
+            accessor: "info",
+            width: 180
+          },
+          {
+            Header: "Цена (лв/опаковка)",
             accessor: "price",
-            width: 100
+            width: 160
           },
           {
             Header: "К-во",
             accessor: "order",
-            width: 220,
+            width: 75,
           }, {
             Header: "Мярка",
             accessor: "unit",
-            width: 100
+            width: 70
           }
         ]
       }
