@@ -10,10 +10,9 @@ class AjaxService extends React.Component {
     headers[Const.AUTH_HEADER_NAME] = this[Const.AUTH_HEADER_NAME];
 
     if (isToEscape) {
-      data = JSON.stringify(data).replace("{", "")
+      data = JSON.stringify(data).replace("{", "");
     }
 
-    console.log(data);
     return axios({
       method: method,
       url: url,
@@ -39,7 +38,7 @@ class AjaxService extends React.Component {
   };
 
   setSecret = (secret) => {
-    this[Const.AUTH_HEADER_NAME] = secret
+    this[Const.AUTH_HEADER_NAME] = secret;
   };
 }
 

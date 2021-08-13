@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { flToInt, zeroFill } from '../src/services/MathUtils'
+import { zeroFill } from '../src/services/MathUtils'
 
 it('renders without crashing', () => {
   const div = document.createElement('div');

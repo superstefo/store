@@ -3,13 +3,14 @@ let ipAdress = 'http://localhost:5000/';
 
 const Const = {
   URLS: {
-    BASE_URL: ipAdress,
-    ORDER:  ipAdress + "order",
     AUTH: ipAdress + "auth",
-    ITEMS:  ipAdress + "items"
+    BASE_URL: ipAdress,
+    ITEMS:  ipAdress + "items",
+    ORDER:  ipAdress + "order",
+    ORDERS:  ipAdress + "orders/"
   },
   AUTH_HEADER_NAME: 'authsecret',
   VERSION: '0.10'
-}
+};
 
 export default Const;

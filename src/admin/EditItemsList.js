@@ -1,8 +1,7 @@
 import React from 'react';
 import "react-table/react-table.css"
 import ReactTable from "react-table";
-import { withRouter } from 'react-router-dom'
-import { TextWrapper, OrderWrapper } from '../parts/TinyParts'
+import { TextWrapper } from '../parts/TinyParts'
 import DataAccessService from '../services/DataAccessService';
 import History from '../services/RouteHistoryProvider';
 
@@ -17,7 +16,6 @@ const Buttons = (args) => {
   )
 }
 
-
 class EditItemsList extends React.Component {
   constructor(props) {
     super(props);
@@ -25,7 +23,6 @@ class EditItemsList extends React.Component {
     this.state = {
       currentOrder: DataAccessService.getCurrentOrder()
     };
-    let allItems = DataAccessService.getPriceList();
   }
 
   onChangeFunc = (e, orderedItem, currentOrder) => {
@@ -125,4 +122,4 @@ class EditItemsList extends React.Component {
   }
 }
 
-export default withRouter(EditItemsList);
+export default EditItemsList;

@@ -13,21 +13,21 @@ class ItemsList extends React.Component {
     this.state = {
       currentOrder: DataAccessService.getCurrentOrder()
     };
-  }
+  };
 
   submit = () => {
-    History.goTo("/basket")
-  }
+    History.goTo("/basket");
+  };
 
   onChangeFunc = (e, orderedItem, currentOrder) => {
     let q = parseInt(e.target.value)
     let newOrder = {
       quantity: q,
       orderedItem: orderedItem
-    }
-    currentOrder[orderedItem.id] = newOrder
-    this.setState({ currentOrder: currentOrder })
-  }
+    };
+    currentOrder[orderedItem.id] = newOrder;
+    this.setState({ currentOrder: currentOrder });
+  };
 
   orderWrapperProps = (item) => {
     return {
@@ -35,8 +35,8 @@ class ItemsList extends React.Component {
       wholeOrder: this.state.currentOrder,
       onChangeFunc: this.onChangeFunc,
       initialValue: this.state.currentOrder[item.id]?.quantity || ""
-    }
-  }
+    };
+  };
 
   prepareViewData = (allItems) => {
     let data = allItems.map(oneItem => {
@@ -45,10 +45,10 @@ class ItemsList extends React.Component {
         unit: <TextWrapper title={oneItem.unit} />,
         price: <TextWrapper title={oneItem.price + " лв/" + oneItem.unit} />,
         order: <OrderWrapper {...this.orderWrapperProps(oneItem)} />
-      }
+      };
       return { ...obj };
     });
-    return data
+    return data;
   }
 
   render() {
@@ -79,7 +79,7 @@ class ItemsList extends React.Component {
           }
         ]
       }
-    ]
+    ];
 
     return (
       <div>

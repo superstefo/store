@@ -2,10 +2,10 @@ import React from 'react';
 import "react-table/react-table.css"
 import ReactTable from "react-table";
 import { withRouter } from 'react-router-dom'
-import { TextWrapper } from '../parts/TinyParts'
+import { TextWrapper } from '../parts/TinyParts';
 import DataAccessService from '../services/DataAccessService';
 import { NavLinkButton } from '../parts/TinyParts';
-import { intToFl, flToInt } from '../services/MathUtils'
+import { intToFl, flToInt } from '../services/MathUtils';
 
 class Basket extends React.Component {
   constructor(props) {
@@ -16,11 +16,11 @@ class Basket extends React.Component {
       allFr: [],
       currentOrder: DataAccessService.getCurrentOrder()
     };
-  }
+  };
 
   text = (text) => {
-    return (<TextWrapper title={text} />)
-  }
+    return (<TextWrapper title={text} />);
+  };
 
   render() {
 
@@ -57,7 +57,7 @@ class Basket extends React.Component {
       quantity: this.text(""),
       price: this.text(""),
       order: this.text(intToFl(totalPrice, 2) + " лв")
-    })
+    });
 
     let present = [
       {
@@ -83,7 +83,7 @@ class Basket extends React.Component {
           }
         ]
       }
-    ]
+    ];
 
     return (
       <div>
@@ -105,8 +105,8 @@ class Basket extends React.Component {
           </div>
         </div>
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
 export default withRouter(Basket);

@@ -1,15 +1,18 @@
 import React from 'react';
+import Authenticate from './admin/Authenticate';
+import Basket from './customer/Basket';
+import EditItem from './admin/EditItem';
+import EditItemsList from './admin/EditItemsList';
+import Faq from './customer/Faq';
+import GetOrders from './admin/GetOrders';
+import HistoryHolder from './services/RouteHistoryProvider';
 import Home from './Home';
 import ItemsList from './customer/ItemsList';
-import Basket from './customer/Basket';
-import TopHeader from './parts/TopHeader';
-import Faq from './customer/Faq';
+import ReviewOrder from './admin/ReviewOrder';
+import SelectOrders from './admin/SelectOrders';
 import OrderDetails from './customer/OrderDetails';
-import Authenticate from './admin/Authenticate';
-import HistoryHolder from './services/RouteHistoryProvider';
 import OrderResult from './customer/OrderResult';
-import EditItemsList from './admin/EditItemsList';
-import EditItem from './admin/EditItem';
+import TopHeader from './parts/TopHeader';
 import {RouteHistoryProvider} from './services/RouteHistoryProvider';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -24,6 +27,9 @@ const App = () => {
         <Switch>
           < Route exact path="/" component={Home} />
           < Route exact path="/basket" component={Basket} />
+          < Route path="/get-orders" component={GetOrders} />
+          < Route path="/select-orders" component={SelectOrders} />
+          < Route path="/review-order" component={ReviewOrder} />
           < Route path="/items" component={ItemsList} />
           < Route path="/faq" component={Faq} />
           < Route path="/order-details" component={OrderDetails} />

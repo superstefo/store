@@ -21,6 +21,7 @@ class TopHeader extends React.Component {
            { !isPristine ? (<NavLinkButton to="/basket" label="Кошница" />) : null } 
            { !isPristine ? (<NavLinkButton to="/faq" label="Информация" />) : null } 
            { isAdmin ? (<NavLinkButton to="/edit-items-list" label="Промяна" />) : null } 
+           { isAdmin ? (<NavLinkButton to="/get-orders" label="Поръчки" />) : null } 
           </div>
         </div>
         <br/>

@@ -3,6 +3,7 @@ import "react-table/react-table.css"
 import Const from '../services/Constants';
 import AjaxService from '../services/AjaxService';
 import { SetStateInput } from '../parts/TinyParts';
+import History from '../services/RouteHistoryProvider';
 
 class Authenticate extends React.Component {
   constructor(props) {
@@ -12,12 +13,12 @@ class Authenticate extends React.Component {
 
   handleSubmit = () => {
     const encodedString = Buffer.from(this.state.name + ":" + this.state.pass).toString('base64');
-    console.log(encodedString);
     let promise = AjaxService.doPost(Const.URLS.AUTH, encodedString, false);
     promise.then((data) => {
-      AjaxService.setSecret(data?.data)
+      AjaxService.setSecret(data?.data);
+      History.goTo("/faq");
     }).catch((e) => {
-      AjaxService.setSecret(null)
+      AjaxService.setSecret(null);
     })
   }
 

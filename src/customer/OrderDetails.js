@@ -39,15 +39,15 @@ class OrderDetails extends React.Component {
       phone: this.state.phone,
       more: this.state.more,
       order: arr
-    }
+    };
 
     let promise = AjaxService.doPost(Const.URLS.ORDER, data, true);
     promise.then((data) => {
       History.goTo("/order-result", { "result": "Поръчката беше успешна. поръчка номер.. " + data.data })
     }).catch((e) => {
       console.error(e);
-    })
-  }
+    });
+  };
 
   render() {
     return (

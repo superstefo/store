@@ -30,14 +30,13 @@ export const OrderWrapper = (args) => {
 
 //changed field is 'state', which is part of the argument object 'statefulObject'
 export const SetStateInput = (args) => {
-  let { stateFieldName, statefulObject, label, type, disabled } = args;
+  let { stateFieldName, statefulObject, label, type, disabled, min, max } = args;
 
-  let initialValue = statefulObject.state[stateFieldName];
+  let initialValue = statefulObject.state[stateFieldName] || "";
   if (!type) { type = "text" };
 
   function setTheState(event, key) {
     statefulObject.setState({ [key]: event?.target?.value });
-
   }
 
   return (
@@ -48,7 +47,10 @@ export const SetStateInput = (args) => {
           className="form-control"
           onChange={(ev) => setTheState(ev, stateFieldName)}
           value={initialValue} type={type}
-          disabled={disabled}>
+          disabled={disabled}
+          min={min}
+          max={max}
+        >
         </input>
       </div>
     </div>

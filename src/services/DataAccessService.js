@@ -8,6 +8,8 @@ class DataKeeperService extends React.Component {
     super(props);
     this.currentOrder = {};
     this.isSitePristine = true;
+    this.allOrders = {};
+    this.selectedDateForOrders = ""; //  to keep state for SelectOrders view
     this.priceList = [
       {
         title: "тиквени семки",
@@ -63,6 +65,22 @@ class DataKeeperService extends React.Component {
 
   getCurrentOrder = () => {
     return this.currentOrder;
+  }
+
+  getOrdersForDate = (date) => {
+    return this.allOrders[date];
+  }
+
+  setOrdersForDate = (date, orders) => {
+    this.allOrders[date] = orders;
+  }
+
+  getSelectedDateForOrders= () => {
+    return this.selectedDateForOrders;
+  }
+
+  setSelectedDateForOrders= (date) => {
+    this.selectedDateForOrders = date;
   }
 
   clearCurrentOrder = () => {
