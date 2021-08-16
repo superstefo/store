@@ -14,51 +14,44 @@ class DataKeeperService extends React.Component {
       {
         title: "тиквени семки",
         id: "boiko01",
-        unit: "кг",
         price: 5.25,
         info: "0,30 кг./опаковка"
       },
       {
         title: "фъстъци",
         id: "peanuts01",
-        unit: "кг",
         price: 1.05,
-        info: "фъстъци едри"
+        info: "0,5кг пакет фъстъци едри"
       },
       {
         title: "фурми",
         id: "furmi01",
-        unit: "кг",
         price: 18.05,
-        info: "фурми мноо яки"
+        info: "0.5кг в кутия"
       },
       {
         title: "авокадо",
         id: "avokado01",
-        unit: "бр",
         price: 4.00,
-        info: "авокадо"
+        info: "брой"
       },
       {
         title: "kруша",
         id: "круша01",
-        unit: "бр",
         price: 2.3,
-        info: "сладка kруша"
+        info: "цена за 1 брой"
       },
       {
         title: "желатин",
         id: "желатин01",
-        unit: "бр",
         price: 0.09,
-        info: "желатин 1"
+        info: "1 пакет"
       },
       {
         title: "захар",
         id: "захар01",
-        unit: "бр",
         price: 0.1,
-        info: "захар 1"
+        info: "1 кг./пакет"
       }
     ];
   };

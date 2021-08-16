@@ -52,7 +52,7 @@ class SelectOrders extends React.Component {
         phone: <TextWrapper title={oneItem.phone} />,
         address: <TextWrapper title={oneItem.address} />,
         count: <TextWrapper title={oneItem.order?.length} />,
-        buttons: <button className="btn btn-primary" onClick={() => this.submit(oneItem, ind, allItems)} >Виж</button>,
+        buttons: <button className="btn btn-primary" onClick={() => this.submit(oneItem, ind, allItems)} >🔍</button>,
         hour: <TextWrapper title={hour} />,
       }
       return { ...obj };
@@ -87,12 +87,12 @@ class SelectOrders extends React.Component {
           {
             Header: "Час",
             accessor: "hour",
-            width: 70,
+            width: 90,
           },
           {
             Header: "",
             accessor: "buttons",
-            width: 70,
+            width: 60,
           }
         ]
       }

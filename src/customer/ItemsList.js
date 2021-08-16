@@ -42,7 +42,6 @@ class ItemsList extends React.Component {
     let data = allItems.map(oneItem => {
       let obj = {
         title: <TextWrapper title={oneItem.title} />,
-        unit: <TextWrapper title={oneItem.unit} />,
         info: <TextWrapper title={oneItem.info} />,
         price: <TextWrapper title={oneItem.price + " лв."} />,
         order: <OrderWrapper {...this.orderWrapperProps(oneItem)} />
@@ -67,21 +66,17 @@ class ItemsList extends React.Component {
           {
             Header: "Инфо",
             accessor: "info",
-            width: 180
+            width: 250
           },
           {
-            Header: "Цена (лв/опаковка)",
+            Header: "Цена, опаковка",
             accessor: "price",
-            width: 160
+            width: 140
           },
           {
             Header: "К-во",
             accessor: "order",
             width: 75,
-          }, {
-            Header: "Мярка",
-            accessor: "unit",
-            width: 70
           }
         ]
       }
@@ -102,7 +97,7 @@ class ItemsList extends React.Component {
           <br />
         </div>
         <div className="text-center">
-          <button className="btn btn-primary" onClick={this.submit} >Напред</button>
+          <button className="btn btn-primary" onClick={this.submit} >▶️</button>
         </div>
       </div>
     )

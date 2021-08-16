@@ -10,7 +10,7 @@ const Buttons = (args) => {
   return (
     <div className="text-center text-wrap">
       <div className=" btn-group ">
-        <button className="btn btn-primary" onClick={() => submitF(item)} >Промени</button>
+        <button className="btn btn-primary" onClick={() => submitF(item)} >🛠️</button>
       </div>
     </div>
   )
@@ -56,10 +56,9 @@ class EditItemsList extends React.Component {
     let data = allItems.map(oneItem => {
       let obj = {
         title: <TextWrapper title={oneItem.title} />,
-        unit: <TextWrapper title={oneItem.unit} />,
-        price: <TextWrapper title={oneItem.price + " лв/" + oneItem.unit} />,
+        info: <TextWrapper title={oneItem.info} />,
+        price: <TextWrapper title={oneItem.price + " лв"} />,
         buttons: <Buttons item={oneItem} submitF={this.submit} />,
-        info: <TextWrapper title={"info..."} />,
       }
       return { ...obj };
     });
@@ -79,23 +78,18 @@ class EditItemsList extends React.Component {
             accessor: "title"
           },
           {
-            Header: "Цена",
-            accessor: "price",
-            width: 110
-          },
-          {
-            Header: "Мярка",
-            accessor: "unit",
-            width: 60
-          },
-          {
             Header: "Инфо",
             accessor: "info"
           },
           {
-            Header: "Редакция",
+            Header: "Цена, опаковка",
+            accessor: "price",
+            width: 140
+          },
+          {
+            Header: "",
             accessor: "buttons",
-            width: 100,
+            width: 60,
           }
         ]
       }
@@ -103,8 +97,12 @@ class EditItemsList extends React.Component {
 
     return (
       <div>
-        <div className="text-center">
-          <button className="btn btn-primary" onClick={() => this.submit()} >Добави нов</button>
+        <div className="text-left">
+        <div className=" btn-group ">
+        <button className="btn btn-primary mr-1" title="Обратно" onClick={this.goToFaqView} >◀️</button>
+        <button className="btn btn-primary" title="Добави нов артикул" onClick={() => this.submit()} >➕</button>
+        </div>
+          
         </div>
         <br />
         <ReactTable className="-striped -highlight"
@@ -116,7 +114,7 @@ class EditItemsList extends React.Component {
           showPagination={false}
         />
         <br />
-        <button className="btn btn-primary" onClick={this.goToFaqView} >Готово</button>
+       
       </div>
     )
   }

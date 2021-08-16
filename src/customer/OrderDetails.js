@@ -14,6 +14,10 @@ class OrderDetails extends React.Component {
   }
 
   handleSubmit = () => {
+    let confirm = window.alert("Моля, потвърдете поръчката!");
+    if (!confirm) {
+      return;
+    }
     let allItems = DataAccessService.getCurrentOrder();
     let arr = [];
 

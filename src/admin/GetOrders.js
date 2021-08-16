@@ -58,7 +58,7 @@ class GetOrders extends React.Component {
         </div>
         <p />
         <br />
-        <button className="btn btn-primary" onClick={() => this.submit()} >Покажи</button>
+        <button className="btn btn-primary" onClick={() => this.submit()} >ОК</button>
       </div>
     )
   }

@@ -71,7 +71,7 @@ class Faq extends React.Component {
           />
           <br />
         </div>
-        <button className="btn btn-primary" onClick={this.submit} >Admin</button>
+        <button className="btn btn-primary" onClick={this.submit} >🛠️</button>
         <br />
         <p />
         <label>ver: {Const.VERSION}</label>

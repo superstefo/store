@@ -45,9 +45,10 @@ class Basket extends React.Component {
 
         let obj = {
           title: this.text(one.title),
-          quantity: this.text(quantity + " " + one.unit),
-          price: this.text(one.price + " лв/" + one.unit),
-          order: this.text(intToFl(currentSum, 2) + " лв"),
+          quantity: this.text(quantity),
+          info: this.text(one.info),
+          price: this.text(one.price + " лв"),
+          total: this.text(intToFl(currentSum, 2) + " лв"),
         }
         return { ...obj };
       });
@@ -56,7 +57,7 @@ class Basket extends React.Component {
       title: this.text("Общо за поръчка"),
       quantity: this.text(""),
       price: this.text(""),
-      order: this.text(intToFl(totalPrice, 2) + " лв")
+      total: this.text(intToFl(totalPrice, 2) + " лв")
     });
 
     let present = [
@@ -67,19 +68,24 @@ class Basket extends React.Component {
             accessor: "title"
           },
           {
-            Header: "Цена",
+            Header: "Инфо",
+            accessor: "info",
+            width: 250
+          },
+          {
+            Header: "Цена, опаковка",
             accessor: "price",
-            width: 100
+            width: 140
           },
           {
             Header: "К-во",
             accessor: "quantity",
-            width: 100
+            width: 75
           },
           {
             Header: "Общо",
-            accessor: "order",
-            width: 220,
+            accessor: "total",
+            width: 100,
           }
         ]
       }
@@ -100,8 +106,8 @@ class Basket extends React.Component {
         </div>
         <div className="text-center">
           <div className=" btn-group ">
-            <NavLinkButton to="/items" label="Назад" />
-            <NavLinkButton to="/order-details" label="Напред" />
+            <NavLinkButton to="/items" label="◀️" />
+            <NavLinkButton to="/order-details" label="▶️" />
           </div>
         </div>
       </div>

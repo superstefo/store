@@ -13,6 +13,7 @@ class TopHeader extends React.Component {
 
   render() {
     let isPristine = DataAccessService.isPristine();
+    let isAdmin = true;
     return (
       <nav>
         <div className="text-center">

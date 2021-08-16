@@ -19,8 +19,7 @@ class EditItems extends React.Component {
 
     this.state = {
       title: item.title || "",
-      id: item.id || "",
-      unit: item.unit || "",
+      id: item.id || this.getId(),
       price: item.price || "",
       info: item.info || ""
     };
@@ -32,19 +31,26 @@ class EditItems extends React.Component {
     return {
       title: this.state.title,
       id: this.state.id,
-      unit: this.state.unit,
       price: parseFloat(price),
       info: this.state.info
     };
   };
 
+  getId = () => {
+    let str = new Date().getTime() + "i";
+    str = str.split('').reverse().join('').substring(0, 6);
+
+    let arr = DataAccessService.getPriceList();
+    let index = arr.findIndex(item => item.id === str);
+
+    if (index > -1) {
+      return this.getId();
+    }
+
+    return str;
+  };
 
   change = () => {
-    if (!this.state.id || this.state.id.length < 3) {
-      window.alert("Уникалният номер е непозволен!" + this.state.id);
-      return;
-    };
-
     let arr = DataAccessService.getPriceList()
     let obj = {};
 
@@ -98,24 +104,16 @@ class EditItems extends React.Component {
   };
 
   render() {
-    let idWarning = "Например badem001. Този уникален номер трябва да е различен от номерата на другите артикули" +
-      " и да не се повтаря. В противен случай информацията може да бъде загубена.";
     return (
       <div>
         <div title="Например Бадем, Белени семки и тн.">
           <SetStateInput stateFieldName="title" statefulObject={this} label="Име на артикул " />
         </div>
-        <div title="Например кг., брой и тн.">
-          <SetStateInput stateFieldName="unit" statefulObject={this} label="Мерна ед." />
-        </div>
-        <div title="Крайна цена в лева, с точност до втория знак. Например 18.05. Цената е за мерната единица от предходното поле.">
+        <div title="Цена в лева за 1 опаковка, с точност до втория знак. Например 18.05.">
           <SetStateInput stateFieldName="price" statefulObject={this} label="Цена" type="number" />
         </div>
-        <div title="Ако е трябват още уточнения. Например големина на разфасовките или минимално количество.">
+        <div title="Например тегло или големина на опаковките.">
           <SetStateInput stateFieldName="info" statefulObject={this} label="Допълнителна информация" />
-        </div>
-        <div title={idWarning}>
-          <SetStateInput stateFieldName="id" statefulObject={this} label="Уникален номер" disabled={this.isImmutableId} />
         </div>
         <div className="text-center">
           <button className="btn btn-primary" onClick={this.change} >Запази</button>
