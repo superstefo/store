@@ -84,12 +84,12 @@ class EditItemsList extends React.Component {
           {
             Header: "Цена, опаковка",
             accessor: "price",
-            width: 140
+            maxWidth: 140
           },
           {
             Header: "",
             accessor: "buttons",
-            width: 60,
+            maxWidth: 60,
           }
         ]
       }
@@ -99,8 +99,8 @@ class EditItemsList extends React.Component {
       <div>
         <div className="text-left">
           <div className=" btn-group ">
-            <button className="btn btn-primary mr-1" title="Обратно" onClick={this.goToFaqView} >◀️</button>
-            <button className="btn btn-primary" title="Добави нов артикул" onClick={() => this.submit()} >➕</button>
+            <button className="btn btn-primary mr-1" title="Обратно" onClick={this.goToFaqView} >Обратно</button>
+            <button className="btn btn-primary" title="Добави нов артикул" onClick={() => this.submit()} >Добави нов</button>
           </div>
         </div>
         <br />

@@ -86,22 +86,22 @@ class ReviewOrder extends React.Component {
           {
             Header: "Инфо",
             accessor: "info",
-            width: 250
+            maxWidth: 250
           },
           {
             Header: "Цена, опаковка",
             accessor: "price",
-            width: 140
+            maxWidth: 140
           },
           {
             Header: "К-во",
             accessor: "quantity",
-            width: 75
+            maxWidth: 75
           },
           {
             Header: "Общо",
             accessor: "total",
-            width: 100,
+            maxWidth: 100
           }
         ]
       }

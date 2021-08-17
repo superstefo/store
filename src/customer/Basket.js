@@ -1,25 +1,32 @@
 import React from 'react';
 import "react-table/react-table.css"
 import ReactTable from "react-table";
-import { withRouter } from 'react-router-dom'
 import { TextWrapper } from '../parts/TinyParts';
 import DataAccessService from '../services/DataAccessService';
 import { NavLinkButton } from '../parts/TinyParts';
 import { intToFl, flToInt } from '../services/MathUtils';
+import History from '../services/RouteHistoryProvider';
 
 class Basket extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      beanId: props.beanId,
-      allFr: [],
       currentOrder: DataAccessService.getCurrentOrder()
     };
   };
 
-  text = (text) => {
-    return (<TextWrapper title={text} />);
+  clear = () => {
+    DataAccessService.clearCurrentOrder();
+    this.setState({ currentOrder: DataAccessService.getCurrentOrder() })
+  };
+
+  makeOrder = () => {
+    let order = DataAccessService.getCurrentOrder();
+    if (Object.keys(order).length < 1) {
+      window.alert("Количката е празна!");
+      return;
+    }
+    History.goTo("/order-details");
   };
 
   render() {
@@ -51,22 +58,22 @@ class Basket extends React.Component {
           {
             Header: "Инфо",
             accessor: "info",
-            width: 250
+            maxWidth: 250
           },
           {
             Header: "Цена, опаковка",
             accessor: "price",
-            width: 140
+            maxWidth: 140
           },
           {
             Header: "К-во",
             accessor: "quantity",
-            width: 75
+            maxWidth: 75
           },
           {
             Header: "Общо",
             accessor: "total",
-            width: 100,
+            maxWidth: 100,
           }
         ]
       }
@@ -89,7 +96,10 @@ class Basket extends React.Component {
           <div className=" btn-group ">
             <NavLinkButton to="/items" label="Назад" />
             <div className="ml-1">
-              <NavLinkButton to="/order-details" label="Напред" />
+              <button className="btn btn-danger" onClick={this.clear}>Изтрий</button>
+            </div>
+            <div className="ml-1">
+              <button className="btn btn-primary" onClick={this.makeOrder}>Напред</button>
             </div>
           </div>
         </div>
@@ -98,7 +108,7 @@ class Basket extends React.Component {
   };
 };
 
-export default withRouter(Basket);
+export default Basket;
 
 export const prepareCalculationPricelist = (arr) => {
   let totalPrice = 0;

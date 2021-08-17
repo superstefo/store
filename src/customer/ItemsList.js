@@ -1,15 +1,13 @@
 import React from 'react';
 import "react-table/react-table.css"
 import ReactTable from "react-table";
-import { withRouter } from 'react-router-dom'
-import { TextWrapper, OrderWrapper, SetStateInput } from '../parts/TinyParts'
+import { TextWrapper, OrderWrapper } from '../parts/TinyParts'
 import DataAccessService from '../services/DataAccessService';
 import History from '../services/RouteHistoryProvider';
 
 class ItemsList extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       currentOrder: DataAccessService.getCurrentOrder()
     };
@@ -21,6 +19,11 @@ class ItemsList extends React.Component {
 
   onChangeFunc = (e, orderedItem, currentOrder) => {
     let q = parseInt(e.target.value)
+
+    if (isNaN(q)) {
+      q = 0;
+    }
+
     let newOrder = {
       quantity: q,
       orderedItem: orderedItem
@@ -66,17 +69,17 @@ class ItemsList extends React.Component {
           {
             Header: "Инфо",
             accessor: "info",
-            width: 250
+            maxWidth: 250
           },
           {
             Header: "Цена, опаковка",
             accessor: "price",
-            width: 140
+            maxWidth: 140
           },
           {
             Header: "К-во",
             accessor: "order",
-            width: 75,
+            maxWidth: 75
           }
         ]
       }
@@ -104,4 +107,4 @@ class ItemsList extends React.Component {
   }
 }
 
-export default withRouter(ItemsList);
+export default ItemsList;

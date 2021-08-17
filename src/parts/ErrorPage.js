@@ -1,8 +1,5 @@
 import React from "react";
-
 import { NavLinkButton } from "./TinyParts";
-import DataAccessService from "../services/DataAccessService";
-import History from '../services/RouteHistoryProvider';
 
 class ErrorPage extends React.Component {
   constructor(props) {
@@ -11,10 +8,6 @@ class ErrorPage extends React.Component {
     this.state = {
       text: "" + err
     };
-  };
-
-  ok = () => {
-    History.goTo("/edit-items-list");
   };
 
   render() {

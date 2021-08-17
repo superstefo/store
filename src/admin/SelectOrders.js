@@ -51,7 +51,6 @@ class SelectOrders extends React.Component {
         name: <TextWrapper title={oneItem.name} />,
         phone: <TextWrapper title={oneItem.phone} />,
         address: <TextWrapper title={oneItem.address} />,
-        count: <TextWrapper title={oneItem.order?.length} />,
         buttons: <button className="btn btn-primary" onClick={() => this.submit(oneItem, ind, allItems)} >🔍</button>,
         hour: <TextWrapper title={hour} />,
       }
@@ -61,7 +60,7 @@ class SelectOrders extends React.Component {
   }
 
   render() {
-    let data = this.prepareViewData(this.state?.orders)
+    let data = this.prepareViewData(this.state?.orders || [])
 
     let present = [
       {
@@ -77,22 +76,17 @@ class SelectOrders extends React.Component {
           {
             Header: "Телефон",
             accessor: "phone",
-            width: 140
-          },
-          {
-            Header: "Пакети",
-            accessor: "count",
-            width: 65
+            maxWidth: 140
           },
           {
             Header: "Час",
             accessor: "hour",
-            width: 90,
+            maxWidth: 90,
           },
           {
             Header: "",
             accessor: "buttons",
-            width: 60,
+            maxWidth: 60,
           }
         ]
       }
