@@ -75,6 +75,9 @@ class Faq extends React.Component {
         <br />
         <p />
         <label>ver: {Const.VERSION}</label>
+        <br />
+        <p />
+        <label>elken ©</label>
       </div>
     )
   }
