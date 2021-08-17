@@ -87,8 +87,10 @@ class Basket extends React.Component {
         </div>
         <div className="text-center">
           <div className=" btn-group ">
-            <NavLinkButton to="/items" label="◀️" />
-            <NavLinkButton to="/order-details" label="▶️" />
+            <NavLinkButton to="/items" label="Назад" />
+            <div className="ml-1">
+              <NavLinkButton to="/order-details" label="Напред" />
+            </div>
           </div>
         </div>
       </div>

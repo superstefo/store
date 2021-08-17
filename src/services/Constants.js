@@ -11,7 +11,7 @@ const Const = {
     WAKE_SERVER: ipAdress + "status"
   },
   AUTH_HEADER_NAME: 'authsecret',
-  VERSION: '1.00'
+  VERSION: '1.01'
 };
 
 export default Const;

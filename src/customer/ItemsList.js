@@ -97,7 +97,7 @@ class ItemsList extends React.Component {
           <br />
         </div>
         <div className="text-center">
-          <button className="btn btn-primary" onClick={this.submit} >▶️</button>
+          <button className="btn btn-primary" onClick={this.submit} >Напред</button>
         </div>
       </div>
     )
