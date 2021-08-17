@@ -98,11 +98,10 @@ class EditItemsList extends React.Component {
     return (
       <div>
         <div className="text-left">
-        <div className=" btn-group ">
-        <button className="btn btn-primary mr-1" title="Обратно" onClick={this.goToFaqView} >◀️</button>
-        <button className="btn btn-primary" title="Добави нов артикул" onClick={() => this.submit()} >➕</button>
-        </div>
-          
+          <div className=" btn-group ">
+            <button className="btn btn-primary mr-1" title="Обратно" onClick={this.goToFaqView} >◀️</button>
+            <button className="btn btn-primary" title="Добави нов артикул" onClick={() => this.submit()} >➕</button>
+          </div>
         </div>
         <br />
         <ReactTable className="-striped -highlight"
@@ -114,7 +113,6 @@ class EditItemsList extends React.Component {
           showPagination={false}
         />
         <br />
-       
       </div>
     )
   }

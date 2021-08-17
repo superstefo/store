@@ -3,6 +3,9 @@ import DataAccessService from './services/DataAccessService';
 import History from './services/RouteHistoryProvider';
 import AjaxService from './services/AjaxService';
 import Const from './services/Constants';
+import logo from './assests/snacking.gif'
+
+
 
 class Home extends Component {
   constructor(props) {
@@ -31,13 +34,15 @@ class Home extends Component {
       <div className="text-center">
         <p />
         <br />
-        <h2>Добре дошли!</h2>
+        <img src={logo} alt="loading..." />
+        <br />
+        <h5>За поръчка на ядки, моля, разгледайте каталога!</h5>
+        <p />
+        <br />
+        <button disabled={this.state.isButtonDisabled} className="btn btn-primary" onClick={this.getPriceList}>Каталог</button>
         <p />
         <br />
         {this.state.isHidden ? null : <div className="spinner-border text-primary" role="status"></div>}
-        <h5>За поръчка на ядки, моля, разгледайте каталога!</h5>
-        <p />
-        <button disabled={this.state.isButtonDisabled} className="btn btn-primary" onClick={this.getPriceList}>Каталог</button>
       </div>
     )
   }

@@ -4,6 +4,7 @@ import ReactTable from "react-table";
 import { SetStateInput } from '../parts/TinyParts'
 import DataAccessService from '../services/DataAccessService';
 import { prepareCalculationPricelist } from '../customer/Basket';
+import History from '../services/RouteHistoryProvider';
 
 class ReviewOrder extends React.Component {
   constructor(props) {
@@ -66,6 +67,10 @@ class ReviewOrder extends React.Component {
     this.setTheState(this.index);
   }
 
+  goToView = () => {
+    History.goTo("/select-orders")
+  }
+
   render() {
     let data = this.state.orderedItems;
 
@@ -106,10 +111,15 @@ class ReviewOrder extends React.Component {
       <div>
         <div className="text-center">
           <div className=" btn-group ">
-            <div className="mdr-r1">
+            <div className="text-left">
+              <button className="btn btn-primary mr-4" onClick={this.goToView} >Обратно</button>
+            </div>
+            <div className="mr-1">
               <button className="btn btn-primary" onClick={() => this.prev()} >◀️</button>
             </div>
-            <button className="btn btn-primary" onClick={() => this.next()} >▶️</button>
+            <div >
+              <button className="btn btn-primary" onClick={() => this.next()} >▶️</button>
+            </div>
           </div>
           <br />
           <div className="row">
@@ -144,6 +154,12 @@ class ReviewOrder extends React.Component {
           pageSize={data.length}
           showPagination={false}
         />
+        <br />
+        <div className="text-center">
+          <div className="btn-group">
+            <button className="btn btn-primary mr-1" title="Обратно" onClick={this.goToView} >Обратно</button>
+          </div>
+        </div>
       </div>
     )
   }
