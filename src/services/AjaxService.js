@@ -29,17 +29,22 @@ class AjaxService extends React.Component {
     return this.execute('put', url, data, isToescape);
   };
 
-  doGet = (url, isToescape) => {
-    return this.execute('get', url, {}, isToescape);
+  doGet = (url) => {
+    return this.execute('get', url, {}, false);
   };
 
-  doDelete = (url, isToescape) => {
-    return this.execute('delete', url, {}, isToescape);
+  doDelete = (url) => {
+    return this.execute('delete', url, {}, false);
   };
 
   setSecret = (secret) => {
     this[Const.AUTH_HEADER_NAME] = secret;
   };
+
+  /// wake up backend server as it falls asleep if not used
+  wakeServer = () => {
+    this.doGet(Const.URLS.WAKE_SERVER);
+  }
 }
 
 export default new AjaxService();

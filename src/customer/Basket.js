@@ -33,32 +33,13 @@ class Basket extends React.Component {
         arr.push(allItems[key])
       });
 
-    let totalPrice = 0;
-
     arr = arr
       .filter(one => { return one.quantity !== 0 })
       .map(one => {
-        let quantity = one.quantity;
-        one = one.orderedItem;
-        let currentSum = quantity * flToInt(one.price, 2);
-        totalPrice = totalPrice + currentSum;
-
-        let obj = {
-          title: this.text(one.title),
-          quantity: this.text(quantity),
-          info: this.text(one.info),
-          price: this.text(one.price + " лв"),
-          total: this.text(intToFl(currentSum, 2) + " лв"),
-        }
-        return { ...obj };
+        return { ...one.orderedItem, quantity: one.quantity }
       });
 
-    arr.push({
-      title: this.text("Общо за поръчка"),
-      quantity: this.text(""),
-      price: this.text(""),
-      total: this.text(intToFl(totalPrice, 2) + " лв")
-    });
+    arr = prepareCalculationPricelist(arr);
 
     let present = [
       {
@@ -116,3 +97,32 @@ class Basket extends React.Component {
 };
 
 export default withRouter(Basket);
+
+export const prepareCalculationPricelist = (arr) => {
+  let totalPrice = 0;
+  arr = arr
+    .map(one => {
+      let quantity = one.quantity;
+      let currentSum = quantity * flToInt(one.price, 2);
+      totalPrice = totalPrice + currentSum;
+
+      let obj = {
+        title: <TextWrapper title={one.title} />,
+        quantity: <TextWrapper title={quantity} />,
+        info: <TextWrapper title={one.info} />,
+        price: <TextWrapper title={one.price + " лв"} />,
+        total: <TextWrapper title={intToFl(currentSum, 2) + " лв"} />,
+      }
+      return { ...obj };
+    });
+
+  arr.push({
+    title: <TextWrapper title={"Общо за поръчка"} />,
+    quantity: <TextWrapper title={""} />,
+    price: <TextWrapper title={""} />,
+    total: <TextWrapper title={intToFl(totalPrice, 2) + " лв"} />
+  });
+
+  return arr;
+};
+

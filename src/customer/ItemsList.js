@@ -54,7 +54,7 @@ class ItemsList extends React.Component {
   render() {
     let allItems = DataAccessService.getPriceList();
 
-    let data = this.prepareViewData(allItems)
+    let data = this.prepareViewData(allItems);
 
     let present = [
       {

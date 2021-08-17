@@ -1,14 +1,13 @@
 import React from 'react';
 import "react-table/react-table.css"
 import ReactTable from "react-table";
-import { TextWrapper, SetStateInput } from '../parts/TinyParts'
+import { SetStateInput } from '../parts/TinyParts'
 import DataAccessService from '../services/DataAccessService';
-import History from '../services/RouteHistoryProvider';
+import { prepareCalculationPricelist } from '../customer/Basket';
 
 class ReviewOrder extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props?.location?.state);
     this.allOrders = props?.location?.state?.allOrders || [];
     let order = props?.location?.state?.order || {};
     this.index = props?.location?.state?.index || 0;
@@ -16,13 +15,28 @@ class ReviewOrder extends React.Component {
   }
 
   makeStateObject = (order) => {
+    let priceMap = DataAccessService.getPriceListObj();
+    let ordersArr = order?.order || [];
+
+    for (let index = 0; index < ordersArr.length; index++) {
+      let orderItem = ordersArr[index]; // one item from the order
+      let priceListItem = priceMap[orderItem.id] || {};
+      orderItem.title = priceListItem.title
+      let warning = "";
+      if (priceListItem.price !== orderItem.price) {
+        warning = "⚠️ Различни цени: ценова листа: " + priceListItem.price + "; поръчка: " + orderItem.price + "; ";
+      }
+      orderItem.info = warning + priceListItem.info;
+    }
+
     return {
       address: order.address || " ",
       email: order.email || " ",
       more: order.more || " ",
       hour: new Date(parseInt(order.date + "000")).toLocaleString() || " ",
       name: order.name || " ",
-      phone: order.phone || " "
+      phone: order.phone || " ",
+      orderedItems: ordersArr || []
     }
   }
 
@@ -53,42 +67,40 @@ class ReviewOrder extends React.Component {
   }
 
   render() {
-    let data = []
+    let data = this.state.orderedItems;
+
+    data = prepareCalculationPricelist(data);
 
     let present = [
       {
         columns: [
           {
-            Header: "Клиент",
-            accessor: "name"
+            Header: "Артикул",
+            accessor: "title"
           },
           {
-            Header: "Адрес",
-            accessor: "address"
+            Header: "Инфо",
+            accessor: "info",
+            width: 250
           },
           {
-            Header: "Телефон",
-            accessor: "phone",
+            Header: "Цена, опаковка",
+            accessor: "price",
             width: 140
           },
           {
-            Header: "Пакети",
-            accessor: "count",
-            width: 65
+            Header: "К-во",
+            accessor: "quantity",
+            width: 75
           },
           {
-            Header: "Час",
-            accessor: "hour",
-            width: 70,
-          },
-          {
-            Header: " ",
-            accessor: "buttons",
-            width: 69,
+            Header: "Общо",
+            accessor: "total",
+            width: 100,
           }
         ]
       }
-    ]
+    ];
 
     return (
       <div>
@@ -105,7 +117,7 @@ class ReviewOrder extends React.Component {
               <SetStateInput stateFieldName="name" statefulObject={this} label="Име" disabled={true} />
             </div>
             <div className="col">
-              <SetStateInput stateFieldName="phone" statefulObject={this} label="Тел." disabled={true} />
+              <SetStateInput stateFieldName="phone" statefulObject={this} label="Телефон" disabled={true} />
             </div>
             <div className="col">
               <SetStateInput stateFieldName="email" statefulObject={this} label="e-mail" disabled={true} />

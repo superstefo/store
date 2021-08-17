@@ -13,15 +13,12 @@ class EditItems extends React.Component {
     super(props);
     let item = props?.location?.state?.item || {};
 
-    if (!!item.id) { // make the id field immutable, as the backend uses it
-      this.isImmutableId = true;
-    };
-
     this.state = {
       title: item.title || "",
       id: item.id || this.getId(),
       price: item.price || "",
-      info: item.info || ""
+      info: item.info || "",
+      isDisabled: false
     };
   };
 
@@ -51,17 +48,13 @@ class EditItems extends React.Component {
   };
 
   change = () => {
-    let arr = DataAccessService.getPriceList()
-    let obj = {};
-
-    arr.forEach(one => {
-      obj[one.id] = one
-    });
+    this.setState({isDisabled: true});
+    let obj = DataAccessService.getPriceListObj();
 
     let editedObj = this.stateToObj();
 
     obj[editedObj.id] = editedObj;
-    arr = [];
+    let arr = [];
 
     Object.keys(obj)
       .forEach((key) => {
@@ -78,6 +71,7 @@ class EditItems extends React.Component {
   delete = (id) => {
     var answer = window.confirm("🔥🔥🔥 Изтриване завинаги? 🔥🔥🔥");
     if (answer) {
+      this.setState({isDisabled: true});
       let array = DataAccessService.getPriceList();
       let newArray = [];
       let newArrayIndex = 0;
@@ -93,13 +87,13 @@ class EditItems extends React.Component {
   };
 
   saveToBackend = (items) => {
-    console.log(items);
     let promise = AjaxService.doPost(Const.URLS.ITEMS, { items }, true);
     promise.then((data) => {
       DataAccessService.setPriceList(items);
       History.goTo("/edit-items-list");
     }).catch((e) => {
-      console.error(e);
+      History.goTo("/error", e);
+      this.setState({isDisabled: false})
     });
   };
 
@@ -116,12 +110,12 @@ class EditItems extends React.Component {
           <SetStateInput stateFieldName="info" statefulObject={this} label="Допълнителна информация" />
         </div>
         <div className="text-center">
-          <button className="btn btn-primary" onClick={this.change} >Запази</button>
+          <button className="btn btn-primary" disabled={this.state.isDisabled} onClick={this.change} >Запази</button>
           <button className="btn btn-primary" onClick={this.cancel} >Откажи</button>
         </div>
         <br />
         <div className="text-center" title="ВНИМАНИЕ!!! Изтрива този артикул от базата!">
-          <button className="btn btn-danger" onClick={() => this.delete(this.state?.id)} >Изтрий</button>
+          <button className="btn btn-danger" disabled={this.state.isDisabled} onClick={() => this.delete(this.state?.id)} >Изтрий</button>
         </div>
       </div>
     )

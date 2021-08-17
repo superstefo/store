@@ -3,6 +3,7 @@ import Authenticate from './admin/Authenticate';
 import Basket from './customer/Basket';
 import EditItem from './admin/EditItem';
 import EditItemsList from './admin/EditItemsList';
+import ErrorPage from './parts/ErrorPage';
 import Faq from './customer/Faq';
 import GetOrders from './admin/GetOrders';
 import HistoryHolder from './services/RouteHistoryProvider';
@@ -37,6 +38,7 @@ const App = () => {
           < Route path="/auth" component={Authenticate} />
           < Route path="/edit-items-list" component={EditItemsList} />
           < Route path="/edit-item" component={EditItem} />
+          < Route path="/error" component={ErrorPage} />
           < Route path="*" component={Home} />
         </Switch>
       </Router>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Const from './Constants';
 import AjaxService from './AjaxService';
-
+import History from './RouteHistoryProvider';
 
 class DataKeeperService extends React.Component {
   constructor(props) {
@@ -10,50 +10,9 @@ class DataKeeperService extends React.Component {
     this.isSitePristine = true;
     this.allOrders = {};
     this.selectedDateForOrders = ""; //  to keep state for SelectOrders view
-    this.priceList = [
-      {
-        title: "тиквени семки",
-        id: "boiko01",
-        price: 5.25,
-        info: "0,30 кг./опаковка"
-      },
-      {
-        title: "фъстъци",
-        id: "peanuts01",
-        price: 1.05,
-        info: "0,5кг пакет фъстъци едри"
-      },
-      {
-        title: "фурми",
-        id: "furmi01",
-        price: 18.05,
-        info: "0.5кг в кутия"
-      },
-      {
-        title: "авокадо",
-        id: "avokado01",
-        price: 4.00,
-        info: "брой"
-      },
-      {
-        title: "kруша",
-        id: "круша01",
-        price: 2.3,
-        info: "цена за 1 брой"
-      },
-      {
-        title: "желатин",
-        id: "желатин01",
-        price: 0.09,
-        info: "1 пакет"
-      },
-      {
-        title: "захар",
-        id: "захар01",
-        price: 0.1,
-        info: "1 кг./пакет"
-      }
-    ];
+    this.isAdmin = false;
+    this.priceList = [];
+    AjaxService.wakeServer();
   };
 
   getCurrentOrder = () => {
@@ -68,11 +27,11 @@ class DataKeeperService extends React.Component {
     this.allOrders[date] = orders;
   }
 
-  getSelectedDateForOrders= () => {
+  getSelectedDateForOrders = () => {
     return this.selectedDateForOrders;
   }
 
-  setSelectedDateForOrders= (date) => {
+  setSelectedDateForOrders = (date) => {
     this.selectedDateForOrders = date;
   }
 
@@ -86,12 +45,36 @@ class DataKeeperService extends React.Component {
   setPristine = (isPristine) => {
     this.isSitePristine = isPristine;
   }
+
+  getPriceListObj = () => {
+    let arr = this.getPriceList()
+    let obj = {};
+
+    arr.forEach(one => {
+      obj[one.id] = one
+    });
+    return obj;
+  }
+
   getPriceList = () => {
+    if (!!this.priceList && this.priceList.length > 0) {
+      return this.priceList;
+    }
+    let promise = AjaxService.doGet(Const.URLS.ITEMS);
+    promise.then(data => {
+      this.setPriceList(data?.data?.items || []);
+    }).catch(e => {
+      History.goTo("/error", e)
+    })
     return this.priceList;
   }
 
   setPriceList = (priceList) => {
     this.priceList = priceList;
+  }
+
+  getIsAdmin = () => {
+    return this.isAdmin;
   }
 
 }

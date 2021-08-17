@@ -4,6 +4,7 @@ import Const from '../services/Constants';
 import AjaxService from '../services/AjaxService';
 import { SetStateInput } from '../parts/TinyParts';
 import History from '../services/RouteHistoryProvider';
+import DataAccessService from '../services/DataAccessService';
 
 class Authenticate extends React.Component {
   constructor(props) {
@@ -16,8 +17,10 @@ class Authenticate extends React.Component {
     let promise = AjaxService.doPost(Const.URLS.AUTH, encodedString, false);
     promise.then((data) => {
       AjaxService.setSecret(data?.data);
+      DataAccessService.setIsAdmin(true);
       History.goTo("/faq");
     }).catch((e) => {
+      History.goTo("/error", e)
       AjaxService.setSecret(null);
     })
   }

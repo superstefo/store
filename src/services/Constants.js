@@ -7,7 +7,8 @@ const Const = {
     BASE_URL: ipAdress,
     ITEMS:  ipAdress + "items",
     ORDER:  ipAdress + "order",
-    ORDERS:  ipAdress + "orders/"
+    ORDERS:  ipAdress + "orders/",
+    WAKE_SERVER: ipAdress + "status"
   },
   AUTH_HEADER_NAME: 'authsecret',
   VERSION: '0.10'
