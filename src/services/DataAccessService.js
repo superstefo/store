@@ -77,6 +77,9 @@ class DataKeeperService extends React.Component {
     return this.isAdmin;
   }
 
+  setIsAdmin = (isAdmin) => {
+    this.isAdmin = isAdmin;
+  }
 }
 export default new DataKeeperService();
 

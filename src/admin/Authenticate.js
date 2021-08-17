@@ -18,7 +18,7 @@ class Authenticate extends React.Component {
     promise.then((data) => {
       AjaxService.setSecret(data?.data);
       DataAccessService.setIsAdmin(true);
-      History.goTo("/faq");
+      History.goTo("/get-orders");
     }).catch((e) => {
       History.goTo("/error", e)
       AjaxService.setSecret(null);
