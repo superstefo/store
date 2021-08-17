@@ -11,12 +11,18 @@ import History from '../services/RouteHistoryProvider';
 class GetOrders extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    let today = new Date();
+    let date = today.getDate();
+    let month = today.getMonth() + 1;
+    this.state = {
+      date: date,
+      month: month
+    };
   }
 
   getOrders = () => {
-    let month = this.state?.month;
-    let day = this.state?.date;
+    let month = "" + this.state?.month;
+    let day = "" + this.state?.date;
 
     if (!month || !day) {
       return;
@@ -32,6 +38,7 @@ class GetOrders extends React.Component {
       DataAccessService.setOrdersForDate(day, data?.data);
       History.goTo("/select-orders")
     }).catch(e => {
+      History.goTo("/error", e)
     })
   }
 
